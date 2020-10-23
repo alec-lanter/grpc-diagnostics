@@ -56,7 +56,7 @@ type DiagCommand struct {
 const usage = "usage : ag-diag <command> <host>:<port> [arguments]"
 
 func ParseCommand(args []string) (DiagCommand, error) {
-	if args[0] == "--help" {
+    if len(args) == 0 || args[0] == "--help" {
 		doHelp()
 	}
 	dc := DiagCommand{}
