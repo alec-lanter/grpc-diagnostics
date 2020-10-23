@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    ag_diagnostics "github.com/alec-lanter/grpc-diagnostics"
+    "ag_diagnostics"
     "os"
 )
 

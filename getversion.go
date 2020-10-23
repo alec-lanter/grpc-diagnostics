@@ -4,7 +4,7 @@ import (
     "context"
     "errors"
     "fmt"
-    "github.com/alec-lanter/grpc-diagnostics/protobuf"
+    "ag_diagnostics/protobuf"
     "google.golang.org/grpc"
     "time"
 )

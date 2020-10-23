@@ -1,4 +1,4 @@
-module github.com/alec-lanter/grpc-diagnostics
+module ag_diagnostics
 
 go 1.15
 
