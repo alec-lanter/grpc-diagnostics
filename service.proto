@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.wex.authgateway;
+
+option java_package = "com.wex.authgateway";
+option java_outer_classname = "DiagnosticProtos";
+option go_package = "/protobuf";
+
+service DiagnosticService {
+    rpc getVersion (DiagnosticRequest) returns (VersionResponse) {}
+}
+
+message DiagnosticRequest {
+    string source_address = 1;
+}
+
+message VersionResponse {
+    string version = 1;
+}
