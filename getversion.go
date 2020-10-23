@@ -2,6 +2,7 @@ package ag_diagnostics
 
 import (
     "context"
+    "errors"
     "fmt"
     "github.com/alec-lanter/grpc-diagnostics/protobuf"
     "google.golang.org/grpc"
@@ -9,7 +10,18 @@ import (
 )
 
 func GetVersion(dc DiagCommand) (string, error) {
-    conn, err := grpc.Dial(dc.Endpoint, grpc.WithInsecure(), grpc.WithBlock())
+    conCtx, cancel := context.WithTimeout(context.Background(), time.Second)
+
+    conn, err := grpc.DialContext(conCtx, dc.Endpoint, grpc.WithInsecure())
+    select {
+        case _, ok := <-conCtx.Done():
+            if !ok {
+                // Channel is closed, our work is finished
+                break
+            }
+            return "", errors.New("timeout connecting to host")
+    }
+
     if err != nil {
         return "", fmt.Errorf("could not connect: %w", err)
     }
